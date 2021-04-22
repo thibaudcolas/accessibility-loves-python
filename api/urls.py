@@ -1,7 +1,6 @@
 from django.urls import path
 
-from api.views.contrast import upload_file
-from api.views.lint import lint
+from api.views import lint, upload_file
 
 urlpatterns = [
     path("api/contrast", upload_file),
