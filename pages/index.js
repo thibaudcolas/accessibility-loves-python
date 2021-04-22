@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import styles from "../styles/Home.module.css";
 
 const Editor = dynamic(import("../components/Editor"), { ssr: false });
+const Dropzone = dynamic(import("../components/Dropzone"), { ssr: false });
 
 export default function Home() {
   return (
@@ -19,7 +20,9 @@ export default function Home() {
 
         <Editor
           value={"<p>{% of a %}c{% elseof %}b{% endof %}</p>\n".repeat(8)}
-          onChange={() => {}}
+          onChange={() => {
+            fetch("/api/lint");
+          }}
         />
 
         <p className={styles.description}>
@@ -29,7 +32,7 @@ export default function Home() {
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
+            <h3 className="relative top-[19px]">Documentation &rarr;</h3>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
 
@@ -55,6 +58,10 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+        </div>
+
+        <div>
+          <Dropzone></Dropzone>
         </div>
       </main>
 
