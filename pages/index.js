@@ -21,7 +21,9 @@ export default function Home() {
         <Editor
           value={"<p>{% of a %}c{% elseof %}b{% endof %}</p>\n".repeat(8)}
           onChange={() => {
-            fetch("/api/lint");
+            fetch("/api/lint")
+              .then((response) => response.json())
+              .then((data) => console.log(data));
           }}
         />
 

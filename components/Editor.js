@@ -19,7 +19,7 @@ export default class Editor extends Component {
         name={name}
         // readOnly={this.props.readOnly}
         value={this.props.value}
-        // onChange={this.props.onChange}
+        onChange={this.props.onChange}
         // editorProps={{ $blockScrolling: true }}
         annotations={[
           {
