@@ -1,0 +1,46 @@
+from curlylint.lint import lint_one
+from curlylint.report import Report
+from pathlib import Path
+from io import StringIO
+import re
+import json
+import sys
+from http.server import BaseHTTPRequestHandler
+
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        sys.stdin = StringIO("<p>{% of a %}c{% elseof %}b{% endof %}</p>")
+        issues = lint_one(Path("-"), {})
+        sys.stdin = sys.__stdin__
+
+        sorted_issues = sorted(
+            issues,
+            key=lambda i: (
+                i.location.file_path,
+                i.location.line,
+                i.location.column,
+            ),
+        )
+
+        output = []
+
+        for issue in sorted_issues:
+            output.append(
+                {
+                    "file_path": str(issue.location.file_path),
+                    "line": issue.location.line,
+                    "column": issue.location.column,
+                    "message": issue.message,
+                    "code": issue.code,
+                }
+            )
+
+        ret = json.dumps(
+            output
+        )
+
+        self.send_response(200)
+        self.send_header("Content-type", "application/json; charset=utf-8")
+        self.end_headers()
+        self.wfile.write(ret.encode("utf8"))
+        return
