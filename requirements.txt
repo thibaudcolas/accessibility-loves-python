@@ -1,1 +1,5 @@
 curlylint==0.12
+django==3.2
+Willow
+dominantcolors
+numpy
