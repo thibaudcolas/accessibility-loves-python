@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
+import Img from "./Img";
 
 const baseStyle = {
   flex: 1,
@@ -36,31 +37,8 @@ const thumbsContainer = {
   marginTop: 16,
 };
 
-const thumb = {
-  display: "inline-flex",
-  borderRadius: 2,
-  border: "1px solid #eaeaea",
-  marginBottom: 8,
-  marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: "border-box",
-};
-
-const thumbInner = {
-  display: "flex",
-  minWidth: 0,
-  overflow: "hidden",
-};
-
-const img = {
-  display: "block",
-  width: "auto",
-  height: "100%",
-};
-
 function Dropzone() {
+  const [serverColors, setServerColors] = useState([]);
   const [files, setFiles] = useState([]);
   const onDrop = useCallback((acceptedFiles) => {
     setFiles(
@@ -78,7 +56,10 @@ function Dropzone() {
       body: data,
     })
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        setServerColors(data.colors);
+      });
     // acceptedFiles.forEach((file) => {
     //   const reader = new FileReader();
 
@@ -113,20 +94,15 @@ function Dropzone() {
   );
 
   const thumbs = files.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img src={file.preview} style={img} />
-      </div>
-    </div>
+    <Img key={file.name} src={file.preview} serverColors={serverColors} />
   ));
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    return () => {
       // Make sure to revoke the data uris to avoid memory leaks
       files.forEach((file) => URL.revokeObjectURL(file.preview));
-    },
-    [files],
-  );
+    };
+  }, [files]);
 
   return (
     <section>
@@ -136,6 +112,8 @@ function Dropzone() {
         <em>(Only *.jpeg and *.png images will be accepted)</em>
       </div>
       <aside style={thumbsContainer}>{thumbs}</aside>
+      <Img src="/dalai-lama.jpg" />
+      <Img src="/cityscape.jpg" />
     </section>
   );
 }

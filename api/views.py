@@ -3,6 +3,7 @@ import json
 import sys
 from io import StringIO
 from pathlib import Path
+from typing import Sequence
 from curlylint.lint import lint_one
 from curlylint.report import Report
 from django.http import HttpResponse, JsonResponse
@@ -15,6 +16,10 @@ from dominantcolors import rgba2rgb, find_dominant_colors
 import numpy as np
 
 
+def to_hex(rgb_tuple: Sequence[int]):
+    return "#%02x%02x%02x" % tuple(rgb_tuple)
+
+
 def get_dominant_colors_for(image, num_colors):
     """Get dominant colors from a given pillow Image instance"""
     im_arr = np.asarray(image)
@@ -25,7 +30,7 @@ def get_dominant_colors_for(image, num_colors):
 
 def pillow_dominant(image):
     dominant_colors = get_dominant_colors_for(
-        image.get_pillow_image(), num_colors=3
+        image.get_pillow_image(), num_colors=1
     )
     return dominant_colors
 
@@ -41,10 +46,9 @@ async def upload_file(request):
     if request.method == "POST":
         i = Image.open(request.FILES["image"])
         colors = i.dominant()
-        print(colors)
-        return HttpResponse("test")
-    else:
-        return HttpResponse("test")
+        return JsonResponse({"colors": colors,})
+
+    return JsonResponse({"message": "use POST instead",})
 
 
 def lint(request):
