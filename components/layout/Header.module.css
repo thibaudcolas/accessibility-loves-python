@@ -1,0 +1,7 @@
+.background {
+  background-image: url(/illustrations/vector-tails.svg);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-origin: padding-box;
+  background-size: contain;
+}

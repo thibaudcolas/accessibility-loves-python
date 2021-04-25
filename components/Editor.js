@@ -8,7 +8,8 @@ import "ace-builds/src-noconflict/theme-github";
 
 export default class Editor extends Component {
   render() {
-    let name = this.props.readOnly ? "readonly" : "editor";
+    const { readOnly, value, onChange, annotations } = this.props;
+    let name = readOnly ? "readonly" : "editor";
     return (
       <AceEditor
         mode="html"
@@ -18,17 +19,15 @@ export default class Editor extends Component {
         // height="400"
         name={name}
         // readOnly={this.props.readOnly}
-        value={this.props.value}
-        onChange={this.props.onChange}
+        value={value}
+        onChange={onChange}
         // editorProps={{ $blockScrolling: true }}
-        annotations={[
-          {
-            row: 3, // must be 0 based
-            column: 4, // must be 0 based
-            text: "error.message", // text to show in tooltip
-            type: "error",
-          },
-        ]}
+        annotations={annotations.map(({ column, line, code, message }) => ({
+          row: line - 1,
+          column,
+          text: `${message}\t${code}`,
+          type: "error",
+        }))}
       />
     );
   }

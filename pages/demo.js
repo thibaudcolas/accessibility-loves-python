@@ -1,11 +1,11 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import styles from "../styles/Home.module.css";
+import styles from "./index.module.css";
 
 const Editor = dynamic(import("../components/Editor"), { ssr: false });
 const Dropzone = dynamic(import("../components/Dropzone"), { ssr: false });
 
-export default function Home() {
+export default function Demo() {
   return (
     <div className={styles.container}>
       <Head>
