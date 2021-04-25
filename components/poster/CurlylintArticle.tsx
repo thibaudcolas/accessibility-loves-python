@@ -81,7 +81,9 @@ const CurlylintArticle = () => {
           </p>
           <ol>
             <li>Curlylint loads and parses the template source.</li>
-            <li>It then runs its rules on the template syntax and HTML.</li>
+            <li>
+              It then runs its rules on the template syntax <em>and</em> HTML.
+            </li>
             <li>Any errors are reported back as output.</li>
           </ol>
         </div>
@@ -96,7 +98,7 @@ const CurlylintArticle = () => {
             installing curlylint locally
           </a>{" "}
           (<code>pip install curlylint</code>), or with this live demo – use one
-          of the predefined examples, or enter your own templates.
+          of the predefined examples, or try it out on your own templates.
         </p>
         <Editor
           value={fixtures.missing_lang.source}
