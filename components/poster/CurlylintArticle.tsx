@@ -1,10 +1,7 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Heading from "../../components/Heading";
-
-import fixtures from "../../utils/curlylint/fixtures";
-
-const Editor = dynamic(import("../../components/Editor"), { ssr: false });
+import CurlylintDemo from "./CurlylintDemo";
 
 const CurlylintArticle = () => {
   return (
@@ -100,15 +97,7 @@ const CurlylintArticle = () => {
           (<code>pip install curlylint</code>), or with this live demo – use one
           of the predefined examples, or try it out on your own templates.
         </p>
-        <Editor
-          value={fixtures.missing_lang.source}
-          annotations={fixtures.missing_lang.output}
-          onChange={() => {
-            fetch("/api/lint")
-              .then((response) => response.json())
-              .then((data) => console.log(data));
-          }}
-        />
+        <CurlylintDemo />
       </section>
       <section aria-labelledby="why-linting-templates">
         <Heading id="why-linting-templates">Why linting templates</Heading>

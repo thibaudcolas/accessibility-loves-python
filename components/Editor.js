@@ -25,7 +25,7 @@ export default class Editor extends Component {
         annotations={annotations.map(({ column, line, code, message }) => ({
           row: line - 1,
           column,
-          text: `${message}\t${code}`,
+          text: `${code}: ${message}`,
           type: "error",
         }))}
       />
