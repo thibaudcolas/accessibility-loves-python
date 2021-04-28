@@ -5,7 +5,6 @@ from io import StringIO
 from pathlib import Path
 from typing import Sequence
 from curlylint.lint import lint_one
-from curlylint.report import Report
 from django.http import HttpResponse, JsonResponse
 from willow.image import Image
 from willow.plugins.pillow import PillowImage
@@ -51,31 +50,50 @@ async def upload_file(request):
     return JsonResponse({"message": "use POST instead",})
 
 
-def lint(request):
-    sys.stdin = StringIO("<p>{% of a %}c{% elseof %}b{% endof %}</p>")
-    issues = lint_one(Path("-"), {})
-    sys.stdin = sys.__stdin__
-
-    sorted_issues = sorted(
-        issues,
-        key=lambda i: (
-            i.location.file_path,
-            i.location.line,
-            i.location.column,
-        ),
-    )
+async def lint(request):
+    if not request.method == "POST":
+        return JsonResponse({"message": "use POST instead",})
 
     output = []
 
-    for issue in sorted_issues:
-        output.append(
+    data = json.loads(request.body)
+    template_source = data.get("template_source", "")
+    if template_source:
+        rules = {}
+        if data.get("aria_role", False):
+            rules["aria_role"] = True
+        if data.get("django_forms_rendering", False):
+            rules["django_forms_rendering"] = True
+        if data.get("html_has_lang", False):
+            rules["html_has_lang"] = True
+        if data.get("image_alt", False):
+            rules["image_alt"] = True
+        if data.get("meta_viewport", False):
+            rules["meta_viewport"] = True
+        if data.get("no_autofocus", False):
+            rules["no_autofocus"] = True
+        if data.get("tabindex_no_positive", False):
+            rules["tabindex_no_positive"] = True
+
+        sys.stdin = StringIO(template_source)
+        issues = lint_one(
+            Path("-"),
             {
-                "file_path": str(issue.location.file_path),
-                "line": issue.location.line,
-                "column": issue.location.column,
-                "message": issue.message,
-                "code": issue.code,
-            }
+                "parse_only": data.get("parse_only", False),
+                "template_tags": data.get("template_tags", []),
+                "rules": rules,
+            },
         )
+        sys.stdin = sys.__stdin__
+
+        for issue in issues:
+            output.append(
+                {
+                    "line": issue.location.line,
+                    "column": issue.location.column,
+                    "message": issue.message,
+                    "code": issue.code,
+                }
+            )
 
     return JsonResponse({"issues": output})

@@ -6,14 +6,18 @@ import dynamic from "next/dynamic";
 import Heading from "../components/Heading";
 import CurlylintArticle from "../components/poster/CurlylintArticle";
 import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 
 const Index = () => {
   return (
     <>
       <Header />
-      <main className="grid 2xl:grid-cols-3 gap-8 p-4">
+      <main className="grid 2xl:grid-cols-6 gap-8 p-4">
         <CurlylintArticle />
-        <article className="min-h-screen" aria-labelledby="kontrasto">
+        <article
+          className="min-h-screen col-span-2"
+          aria-labelledby="kontrasto"
+        >
           <h2 id="kontrasto">
             Kontrasto
             <br />
@@ -34,7 +38,7 @@ const Index = () => {
           </h2>
         </article>
       </main>
-      <footer></footer>
+      <Footer />
     </>
   );
 };

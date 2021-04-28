@@ -2,21 +2,20 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import AceEditor from "react-ace";
 
-import "ace-builds/src-noconflict/mode-html";
-import "ace-builds/src-noconflict/mode-handlebars";
-import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/mode-nunjucks";
+import "ace-builds/src-noconflict/theme-xcode";
+import "ace-builds/src-noconflict/theme-monokai";
 
 export default class Editor extends Component {
   render() {
-    const { readOnly, value, onChange, annotations } = this.props;
+    const { readOnly, theme, value, onChange, annotations } = this.props;
     let name = readOnly ? "readonly" : "editor";
     return (
       <AceEditor
-        mode="html"
-        theme="github"
-        // className="w-full"
-        // width="300"
-        // height="400"
+        mode="nunjucks"
+        theme={theme}
+        className="w-full"
+        width="300"
         name={name}
         // readOnly={this.props.readOnly}
         value={value}

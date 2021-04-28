@@ -15,11 +15,11 @@ html {
 
 body {
   margin: 0 auto;
-  @apply text-xl;
+  @apply text-xl text-gray-dark;
 }
 
 code {
-  @apply bg-gray-light-mid rounded-sm text-dark-blue p-1;
+  @apply bg-gray-light-mid rounded-md text-dark-blue p-1 font-mono;
 }
 
 a {
@@ -29,15 +29,15 @@ a {
 }
 
 h1 {
-  @apply text-4xl font-bold;
+  @apply text-4xl xl:text-5xl font-bold;
 }
 
 h2 {
-  @apply text-3xl font-bold mb-2;
+  @apply text-3xl xl:text-4xl font-bold mb-4;
 }
 
 h3 {
-  @apply text-2xl mb-2;
+  @apply text-2xl xl:text-3xl mb-2 mt-4;
 }
 
 header {
@@ -48,7 +48,9 @@ section {
   @apply mt-8;
 }
 
-p {
+p,
+ul,
+ol {
   @apply mb-2 leading-8;
   max-width: 768px;
 }
@@ -64,4 +66,8 @@ ol {
 ul > li,
 ol > li {
   @apply ms-4 leading-8;
+}
+
+hr {
+  @apply mt-8 mb-8;
 }

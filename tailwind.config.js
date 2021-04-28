@@ -38,6 +38,11 @@ module.exports = {
       // extrabold: 800,
       // black: 900,
     },
+    extend: {
+      screens: {
+        print: { raw: "print" },
+      },
+    },
   },
   variants: {
     extend: {},
