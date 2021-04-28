@@ -37,7 +37,7 @@ h2 {
 }
 
 h3 {
-  @apply text-2xl xl:text-3xl mb-2 mt-4;
+  @apply text-2xl xl:text-3xl mb-2 mt-2;
 }
 
 header {
@@ -52,7 +52,7 @@ p,
 ul,
 ol {
   @apply mb-2 leading-8;
-  max-width: 768px;
+  max-width: 864px;
 }
 
 ul {

@@ -6,7 +6,7 @@ import CurlylintDemo from "./CurlylintDemo";
 const CurlylintArticle = () => {
   return (
     <article className="min-h-screen col-span-3" aria-labelledby="curlylint">
-      <span className="align-middle me-2">
+      <span className="align-top me-2">
         <Image
           src="/curlylint/curlylint-logo.svg"
           alt=""
@@ -36,11 +36,18 @@ const CurlylintArticle = () => {
           <ul>
             <li>
               It’s a <abbr title="Command-Line Interface">CLI</abbr> available{" "}
-              <a href="https://pypi.org/project/curlylint/">from PyPI</a>.
+              <a href="https://pypi.org/project/curlylint/">from PyPI</a>{" "}
+              currently with{" "}
+              <a href="https://www.curlylint.org/docs/rules/all">
+                8 linting rules
+              </a>
+              .
             </li>
             <li>
               Originally a fork of{" "}
-              <a href="https://github.com/motet-a/jinjalint">jinjalint</a>.
+              <a href="https://github.com/motet-a/jinjalint">jinjalint</a>,
+              using a custom parser built with{" "}
+              <a href="https://parsy.readthedocs.io/">parsy</a>.
             </li>
             <li>
               Aiming to support{" "}
@@ -51,17 +58,6 @@ const CurlylintArticle = () => {
               </a>
               , <a href="https://twig.symfony.com">Twig</a>,{" "}
               <a href="https://shopify.github.io/liquid/">Liquid</a>.
-            </li>
-            <li>
-              Using a custom parser built with{" "}
-              <a href="https://parsy.readthedocs.io/">parsy</a>.
-            </li>
-            <li>
-              There are{" "}
-              <a href="https://www.curlylint.org/docs/rules/all">
-                8 linting rules
-              </a>
-              .
             </li>
           </ul>
         </div>
@@ -110,12 +106,16 @@ const CurlylintArticle = () => {
           />
         </a>
         <p className="mt-4 mb-8">
-          You can try it for yourself by{" "}
+          Try it for yourself by{" "}
           <a href="https://www.curlylint.org/docs/">
             installing curlylint locally
           </a>{" "}
-          (<code>pip install curlylint</code>), or with this live demo – use one
-          of the predefined examples, or try it out on your own templates.
+          (<code>pip install curlylint</code>), or with the live demo{" "}
+          <span className="print:hidden">
+            – use one of the predefined examples, or try it out on your own
+            templates
+          </span>
+          .
         </p>
         <div className="hidden print:block">
           <p>
@@ -143,9 +143,9 @@ const CurlylintArticle = () => {
           </ol>
           <p>
             This concept of the “cost of fixing errors” is often represented by
-            a chart of the “relative cost of fixing defects” (© IBM System
-            Science Institute / <a href="https://www.nist.gov/">NIST</a>)
-            depending on when they are introduced in a project:
+            a chart of the “relative cost of fixing defects” (©{" "}
+            <a href="https://www.nist.gov/">NIST</a>) depending on when they are
+            introduced in a project:
           </p>
           <Image
             src="/curlylint/IBM-System-Science-Institute-Relative-Cost-of-Fixing-Defects.png"
@@ -158,27 +158,26 @@ const CurlylintArticle = () => {
               Static analysis
             </a>{" "}
             is a common approach to this problem – Coding errors can’t be caught
-            any sooner than as developers are writing code, and friction is the
-            lowest when feedback on the code happens as part of authoring it,
-            rather than in a separate environment.
+            any sooner than as developers are writing code, and friction is
+            lowest when receiving feedback while authoring code, rather than in
+            a separate environment.
           </p>
           <p>
-            More generally, this is part of an approach to testing referred to
-            as “
+            More generally, this is part of a testing methodology called “
             <a href="https://www.stickyminds.com/article/shift-left-approach-software-testing">
               Shift Left
             </a>
-            ”, moving the effort of quality assurance (QA) as early as possible
-            in projects. This is particularly relevant{" "}
+            ”, moving the quality assurance (QA) effort towards earlier project
+            phases. This is particularly relevant{" "}
             <a href="https://feather.ca/shift-left/">
-              in the field of accessibility
+              in accessibility as a field
             </a>
-            , which used to be considered primarily as a testing concern.
+            , which used to primarily be in the remit of testers.
           </p>
           <p>
-            <strong>But there is more!</strong> Another clear advantage of
-            linting templates is our ability to flag not just HTML issues, but
-            also issues with template syntax. For example, Django’s{" "}
+            Another clear advantage of linting templates is our ability to flag
+            not just HTML issues, but also{" "}
+            <strong>issues with template syntax</strong>. For example, Django’s{" "}
             <a href="https://docs.djangoproject.com/en/3.2/topics/forms/">
               <code>as_table</code>
             </a>{" "}
@@ -188,7 +187,7 @@ const CurlylintArticle = () => {
             </a>{" "}
             for screen reader users – in this case, feedback at the template
             level will be much more actionable (“don’t use as_table”, rather
-            than “avoid using forms for layout”).
+            than “avoid using tables for forms layout”).
           </p>
         </section>
 

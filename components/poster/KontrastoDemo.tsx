@@ -6,7 +6,7 @@ import CheckboxField from "../../components/CheckboxField";
 import fixtures from "../../utils/curlylint/fixtures";
 import { delayAndIdle } from "../../utils/delay";
 
-const Editor = dynamic(import("../../components/Editor"), { ssr: false });
+const Dropzone = dynamic(import("../../components/Dropzone"), { ssr: false });
 
 const editorThemes = [
   { value: "monokai", label: "Dark" },
@@ -103,14 +103,8 @@ const CurlylintDemo = () => {
     }
   }, [theme]);
   return (
-    <div className="grid 2xl:grid-cols-2 gap-4">
-      <Editor
-        key={example}
-        theme={theme}
-        value={template_source}
-        annotations={annotations}
-        onChange={set_template_source}
-      />
+    <div className="grid 2xl:grid-cols-3 gap-4">
+      <Dropzone />
       <div>
         <div className="block">
           <label htmlFor="curlylint_example" className="inline-block mb-8 me-4">
@@ -148,13 +142,7 @@ const CurlylintDemo = () => {
           id="django_forms_rendering"
           checked={django_forms_rendering}
           onChecked={set_django_forms_rendering}
-          help={
-            <span>
-              Disallows using Django’s convenience form rendering helpers,
-              <br />
-              for which the markup isn’t screen-reader-friendly
-            </span>
-          }
+          help="Disallows using Django’s convenience form rendering helpers, for which the markup isn’t screen-reader-friendly"
         />
         <CheckboxField
           id="html_has_lang"

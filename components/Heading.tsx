@@ -36,7 +36,7 @@ const Heading = ({
     <>
       {heading}
       <Link href={`#${id}`}>
-        <a className="inline-block no-underline opacity-50 hover:opacity-100 hover:underline focus:opacity-100 focus:underline">
+        <a className="inline-block no-underline opacity-50 hover:opacity-100 hover:underline focus:opacity-100 focus:underline print:hidden">
           <span aria-hidden="true">#</span>
           <span className="sr-only">Link to “{children}”</span>
         </a>

@@ -16,6 +16,7 @@ export default class Editor extends Component {
         theme={theme}
         className="w-full"
         width="300"
+        fontSize={24}
         name={name}
         // readOnly={this.props.readOnly}
         value={value}

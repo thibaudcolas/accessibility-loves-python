@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 const Header = () => {
   return (
     <header
-      className={`grid grid-cols-2 bg-dark-turquoise border-b-8 border-snake-green text-white print:text-dark-blue shadow-md xl:shadow-xl p-4 pb-2`}
+      className={`grid grid-cols-2 bg-dark-turquoise border-b-8 border-snake-green text-white print:text-dark-blue shadow-md xl:shadow-xl p-4 pb-2 print:pt-0 print:pb-2`}
     >
       <h1>
         Improving web accessibility with Python
@@ -18,16 +18,21 @@ const Header = () => {
         </small>
       </h1>
       <div className="grid grid-flow-col-dense text-pale-blue print:text-dark-turquoise">
-        <nav className="grid lg:grid-flow-col gap-2 items-baseline">
+        <nav className="flex gap-4 2xl:gap-8 items-baseline">
           <Link href="/#curlylint">
-            <a>Curlylint</a>
+            <a className="print:hidden">Curlylint</a>
           </Link>
           <Link href="/#kontrasto">
-            <a>Kontrasto</a>
+            <a className="print:hidden">Kontrasto</a>
           </Link>
           <Link href="/#why">
-            <a>Why this matters</a>
+            <a className="print:hidden">Why this matters</a>
           </Link>
+          <span className="print:hidden">|</span>
+          <span className="print:text-2xl print:font-bold">
+            <span className="text-white print:text-gray-mid-dark">Link: </span>
+            <a href="https://thib.me/python-ftw">thib.me/python-ftw</a>
+          </span>
           <span>
             <span className="text-white print:text-gray-mid-dark">By </span>
             <a href="https://github.com/thibaudcolas">Thibaud Colas</a>
@@ -39,10 +44,6 @@ const Header = () => {
                 height={64}
               />
             </span>
-            {/* <span className="text-white print:text-gray-mid-dark">
-              Shortlink:{" "}
-            </span>
-            <a href="https://thib.me/python-ftw">thib.me/python-ftw</a> */}
           </span>
         </nav>
       </div>

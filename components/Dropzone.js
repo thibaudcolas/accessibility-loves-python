@@ -13,9 +13,10 @@ const baseStyle = {
   borderColor: "#eeeeee",
   borderStyle: "dashed",
   backgroundColor: "#fafafa",
-  color: "#bdbdbd",
+  color: "#6F6F6F",
   outline: "none",
   transition: "border .24s ease-in-out",
+  cursor: "pointer",
 };
 
 const activeStyle = {
@@ -105,16 +106,18 @@ function Dropzone() {
   }, [files]);
 
   return (
-    <section>
+    <div className="col-span-2">
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
-        <p>Drop some files here, or click to select files</p>
-        <em>(Only *.jpeg and *.png images will be accepted)</em>
+        <p>
+          Drop images (<em>JPEG, PNG</em>) here, or click to select files
+        </p>
       </div>
       <aside style={thumbsContainer}>{thumbs}</aside>
-      <Img src="/dalai-lama.jpg" />
-      <Img src="/cityscape.jpg" />
-    </section>
+      <Img src="/kontrasto/dalai-lama.jpg" />
+      <Img src="/kontrasto/cityscape.jpg" />
+      <Img src="/kontrasto/dayglare.jpg" />
+    </div>
   );
 }
 
