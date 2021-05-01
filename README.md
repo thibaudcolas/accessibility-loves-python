@@ -32,3 +32,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+---
+
+https://www.nesta.org.uk/event/Claiming-Space-Nesta-Talks-To-Leslie-Kern/
+https://www.nesta.org.uk/event/How-can-we-build-a-more-secure-future-Dr-Reb-Johnson/
+https://css-tricks.com/methods-contrasting-text-backgrounds/
+
+https://jsfiddle.net/thibaudcolas/71ho6z83/1/
+http://www.kennethcachia.com/background-check/
+https://github.com/scottcorgan/contrast
+https://jariz.github.io/vibrant.js/
+https://lokeshdhakar.com/projects/color-thief/
+
+https://www.brandwood.com/a11y/

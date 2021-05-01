@@ -65,8 +65,8 @@ const KontrastoArticle = () => {
           <p>
             <strong className="text-3xl">
               Live demo:{" "}
-              <a href="https://python-accessibility-ftw.vercel.app/">
-                python-accessibility-ftw.vercel.app
+              <a href="https://accessibility-loves-python.vercel.app/">
+                accessibility-loves-python.vercel.app
               </a>
             </strong>
           </p>

@@ -8,8 +8,8 @@ const Footer = () => {
         <strong>Improving web accessibility with Python</strong> – PyCon US 2021
         poster by <a href="https://github.com/thibaudcolas">Thibaud Colas</a>.
         Code MIT-licensed on GitHub (
-        <a href="https://github.com/thibaudcolas/python-accessibility-ftw">
-          thibaudcolas/python-accessibility-ftw
+        <a href="https://github.com/thibaudcolas/accessibility-loves-python">
+          thibaudcolas/accessibility-loves-python
         </a>
         ). Text contents available as{" "}
         <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.
