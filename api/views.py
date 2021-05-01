@@ -45,14 +45,26 @@ async def upload_file(request):
     if request.method == "POST":
         i = Image.open(request.FILES["image"])
         colors = i.dominant()
-        return JsonResponse({"colors": colors,})
+        return JsonResponse(
+            {
+                "colors": colors,
+            }
+        )
 
-    return JsonResponse({"message": "use POST instead",})
+    return JsonResponse(
+        {
+            "message": "use POST instead",
+        }
+    )
 
 
 async def lint(request):
     if not request.method == "POST":
-        return JsonResponse({"message": "use POST instead",})
+        return JsonResponse(
+            {
+                "message": "use POST instead",
+            }
+        )
 
     output = []
 
