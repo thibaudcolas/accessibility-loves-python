@@ -33,7 +33,7 @@ h1 {
 }
 
 h2 {
-  @apply text-3xl xl:text-4xl font-bold mb-4;
+  @apply text-3xl xl:text-4xl font-bold mb-8;
 }
 
 h3 {
@@ -70,4 +70,17 @@ ol > li {
 
 hr {
   @apply mt-8 mb-8;
+}
+
+.kontrasto-text {
+  color: var(--kontrasto-text);
+}
+
+.kontrasto-bg {
+  background: var(--kontrasto-bg);
+}
+
+.kontrasto-text-bg {
+  color: var(--kontrasto-text);
+  background: var(--kontrasto-bg);
 }

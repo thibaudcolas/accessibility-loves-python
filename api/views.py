@@ -3,38 +3,50 @@ import json
 import sys
 from io import StringIO
 from pathlib import Path
-from typing import Sequence
+from typing import Dict
 from curlylint.lint import lint_one
+from kontrasto import wcag_2, wcag_3
+from kontrasto.willow_operations import pillow_dominant
 from django.http import HttpResponse, JsonResponse
 from willow.image import Image
 from willow.plugins.pillow import PillowImage
 from willow.registry import registry
 
-# https://github.com/wenmin-wu/dominant-colors-py
-from dominantcolors import rgba2rgb, find_dominant_colors
-import numpy as np
-
-
-def to_hex(rgb_tuple: Sequence[int]):
-    return "#%02x%02x%02x" % tuple(rgb_tuple)
-
-
-def get_dominant_colors_for(image, num_colors):
-    """Get dominant colors from a given pillow Image instance"""
-    im_arr = np.asarray(image)
-    if image.mode == "RGBA":
-        im_arr = rgba2rgb(im_arr)
-    return find_dominant_colors(im_arr, num_colors)
-
-
-def pillow_dominant(image):
-    dominant_colors = get_dominant_colors_for(
-        image.get_pillow_image(), num_colors=1
-    )
-    return dominant_colors
-
-
 registry.register_operation(PillowImage, "dominant", pillow_dominant)
+
+
+def wcag_2_contrast_light_or_dark(
+    image, light_color: str, dark_color: str
+) -> Dict[str, str]:
+    dominant = image.dominant()
+    light_contrast = wcag_2.wcag2_contrast(dominant, light_color)
+    dark_contrast = wcag_2.wcag2_contrast(dominant, dark_color)
+    lighter = light_contrast > dark_contrast
+    return {
+        "text_color": light_color if lighter else dark_color,
+        "text_theme": "light" if lighter else "dark",
+        "bg_color": dominant,
+        "bg_theme": "dark" if lighter else "light",
+    }
+
+
+def wcag_3_contrast_light_or_dark(
+    image, light_color: str, dark_color: str
+) -> Dict[str, str]:
+    dominant = image.dominant()
+    light_contrast = wcag_3.format_contrast(
+        wcag_3.apca_contrast(dominant, light_color)
+    )
+    dark_contrast = wcag_3.format_contrast(
+        wcag_3.apca_contrast(dominant, dark_color)
+    )
+    lighter = light_contrast > dark_contrast
+    return {
+        "text_color": light_color if lighter else dark_color,
+        "text_theme": "light" if lighter else "dark",
+        "bg_color": dominant,
+        "bg_theme": "dark" if lighter else "light",
+    }
 
 
 async def index(request):
@@ -44,10 +56,10 @@ async def index(request):
 async def upload_file(request):
     if request.method == "POST":
         i = Image.open(request.FILES["image"])
-        colors = i.dominant()
         return JsonResponse(
             {
-                "colors": colors,
+                "wcag2": wcag_2_contrast_light_or_dark(i, "#ffffff", "#000000"),
+                "wcag3": wcag_3_contrast_light_or_dark(i, "#ffffff", "#000000"),
             }
         )
 

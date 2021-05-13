@@ -7,7 +7,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>Improving web accessibility with Python | PyCon US 2021</title>
+        <title>Web Accessibility ♥ Python | PyCon US 2021</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link
           rel="apple-touch-icon"

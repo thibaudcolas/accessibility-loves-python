@@ -16,14 +16,9 @@ const Index = () => {
       <main className="grid 2xl:grid-cols-6 gap-4 2xl:gap-10 p-4 print:ps-0 print:pe-0">
         <CurlylintArticle />
         <KontrastoArticle></KontrastoArticle>
-        <article
-          className="min-h-screen"
-          aria-labelledby="why-this-is-relevant-to-python-developers"
-        >
-          <h2 id="why-this-is-relevant-to-python-developers">
-            Why this is relevant for Python developers
-          </h2>
-        </article>
+        {/* <article className="min-h-screen" aria-labelledby="why">
+          <h2 id="why">Why Python is such a good fit</h2>
+        </article> */}
       </main>
       <Footer />
     </>

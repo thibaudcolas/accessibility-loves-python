@@ -103,7 +103,7 @@ const CurlylintDemo = () => {
     }
   }, [theme]);
   return (
-    <div className="grid 2xl:grid-cols-2 gap-4">
+    <div className="grid 2xl:grid-cols-3 gap-4">
       <Editor
         key={example}
         theme={theme}

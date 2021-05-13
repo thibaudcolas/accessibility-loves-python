@@ -19,9 +19,12 @@ if "SECRET_KEY" in env:
 DEBUG = env.get("DEBUG", "true") == "true"
 
 if "VERCEL_URL" in env and ("localhost" not in env["VERCEL_URL"]):
-    ALLOWED_HOSTS = [env["VERCEL_URL"], "accessibility-loves-python.vercel.app"]
+    ALLOWED_HOSTS = [
+        env["VERCEL_URL"],
+        "accessibility-loves-python.vercel.app",
+    ]
 else:
-    ALLOWED_HOSTS = ["accessibility-loves-python.vercel.app"]
+    ALLOWED_HOSTS = ["localhost", "accessibility-loves-python.vercel.app"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

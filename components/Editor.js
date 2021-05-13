@@ -14,7 +14,7 @@ export default class Editor extends Component {
       <AceEditor
         mode="nunjucks"
         theme={theme}
-        className="w-full"
+        className="w-full 2xl:col-span-2"
         width="300"
         fontSize={24}
         name={name}

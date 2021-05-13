@@ -38,8 +38,91 @@ const thumbsContainer = {
   marginTop: 16,
 };
 
+const defaultImages = [
+  {
+    src:
+      "/kontrasto/Blue sky and sea in the background with a cliff face to the rigt half, people atop the cliff.jpg",
+    alt:
+      "Blue sky and sea in the background with a cliff face to the rigt half, people atop the cliff",
+    serverResults: {
+      wcag2: {
+        text_color: "#ffffff",
+        text_theme: "light",
+        bg_color: "#4971a1",
+        bg_theme: "dark",
+      },
+      wcag3: {
+        text_color: "#ffffff",
+        text_theme: "light",
+        bg_color: "#4971a1",
+        bg_theme: "dark",
+      },
+    },
+  },
+  {
+    src:
+      "/kontrasto/Lake at dusk, with reflections of the sunset, and forests on the horizon; a boat on the foreground heads towards the sun.jpg",
+    alt:
+      "Lake at dusk, with reflections of the sunset, and forests on the horizon; a boat on the foreground heads towards the sun",
+    serverResults: {
+      wcag2: {
+        text_color: "#000000",
+        text_theme: "dark",
+        bg_color: "#889089",
+        bg_theme: "light",
+      },
+      wcag3: {
+        text_color: "#ffffff",
+        text_theme: "light",
+        bg_color: "#889089",
+        bg_theme: "dark",
+      },
+    },
+  },
+  {
+    src:
+      "/kontrasto/Mountainous landscape at dusk, with dark trees and mountain contours, and a bright sky with orange clouds.jpg",
+    alt:
+      "Mountainous landscape at dusk, with dark trees and mountain contours, and a bright sky with orange clouds",
+    serverResults: {
+      wcag2: {
+        text_color: "#ffffff",
+        text_theme: "light",
+        bg_color: "#604a4a",
+        bg_theme: "dark",
+      },
+      wcag3: {
+        text_color: "#ffffff",
+        text_theme: "light",
+        bg_color: "#604a4a",
+        bg_theme: "dark",
+      },
+    },
+  },
+  {
+    src:
+      "/kontrasto/Snow-covered landscape with snow-covered trees, blue-white sky, and a snow-covered radio tower on the horizon.jpg",
+    alt:
+      "Snow-covered landscape with snow-covered trees, blue-white sky, and a snow-covered radio tower on the horizon",
+    serverResults: {
+      wcag2: {
+        text_color: "#000000",
+        text_theme: "dark",
+        bg_color: "#6b92cf",
+        bg_theme: "light",
+      },
+      wcag3: {
+        text_color: "#ffffff",
+        text_theme: "light",
+        bg_color: "#6b92cf",
+        bg_theme: "dark",
+      },
+    },
+  },
+];
+
 function Dropzone() {
-  const [serverColors, setServerColors] = useState([]);
+  const [serverResults, setServerResults] = useState({});
   const [files, setFiles] = useState([]);
   const onDrop = useCallback((acceptedFiles) => {
     setFiles(
@@ -58,8 +141,7 @@ function Dropzone() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setServerColors(data.colors);
+        setServerResults(data);
       });
     // acceptedFiles.forEach((file) => {
     //   const reader = new FileReader();
@@ -95,7 +177,7 @@ function Dropzone() {
   );
 
   const thumbs = files.map((file) => (
-    <Img key={file.name} src={file.preview} serverColors={serverColors} />
+    <Img key={file.name} src={file.preview} serverResults={serverResults} />
   ));
 
   useEffect(() => {
@@ -109,14 +191,19 @@ function Dropzone() {
     <div className="col-span-2">
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
-        <p>
+        <p className="p-4">
           Drop images (<em>JPEG, PNG</em>) here, or click to select files
         </p>
       </div>
       <aside style={thumbsContainer}>{thumbs}</aside>
-      <Img src="/kontrasto/dalai-lama.jpg" />
-      <Img src="/kontrasto/cityscape.jpg" />
-      <Img src="/kontrasto/dayglare.jpg" />
+      {defaultImages.map((i) => (
+        <Img
+          key={i.src}
+          src={i.src}
+          alt={i.alt}
+          serverResults={i.serverResults}
+        />
+      ))}
     </div>
   );
 }
