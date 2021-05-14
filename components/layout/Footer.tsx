@@ -15,6 +15,8 @@ const Footer = () => {
         Emoji credits: <a href="https://github.com/mozilla/fxemoji">FxEmojis</a>
         . Live site hosted on <a href="https://vercel.com/">Vercel</a>. Link:{" "}
         <a href="https://thib.me/python-ftw">thib.me/python-ftw</a>.
+        <br />
+        Thank you to Nick, Dan, Jake, Helen, Kyle, Helen for their feedback.
       </p>
       <div className="flex-1 col-span-3 content-end flex flex-row items-end">
         <div>
