@@ -14,7 +14,7 @@ const Footer = () => {
         <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.
         Emoji credits: <a href="https://github.com/mozilla/fxemoji">FxEmojis</a>
         . Live site hosted on <a href="https://vercel.com/">Vercel</a>. Link:{" "}
-        <a href="https://thib.me/python-ftw">thib.me/python-ftw</a>.
+        <a href="https://thib.me/pycon-ftw">thib.me/pycon-ftw</a>.
         <br />
         Thank you to Nick, Dan, Jake, Helen, Kyle, Helen for their feedback.
       </p>
