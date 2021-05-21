@@ -1,0 +1,98 @@
+{
+  extends: ["config:base"],
+  // https://renovatebot.com/docs/configuration-options/#commitbodytable
+  commitBodyTable: true,
+  // https://renovatebot.com/docs/configuration-options/#ignoredeps
+  ignoreDeps: [
+    "curlylint",
+    "kontrasto",
+    "django",
+    "ace-builds",
+    "kontrasto",
+    "tailwindcss",
+    "tailwindcss-rtl",
+    "react-ace",
+    "react-dropzone",
+  ],
+  // https://renovatebot.com/docs/configuration-options/#labels
+  labels: ["enhancement"],
+  // https://renovatebot.com/docs/configuration-options/#prcreation
+  prCreation: "not-pending",
+  // https://renovatebot.com/docs/configuration-options/#semanticcommits
+  semanticCommits: true,
+  // https://renovatebot.com/docs/configuration-options/#prbodycolumns
+  prBodyColumns: ["Package", "Update", "Type", "Change"],
+  // https://renovatebot.com/docs/configuration-options/#rebasestaleprs
+  rebaseStalePrs: true,
+  // https://renovatebot.com/docs/configuration-options/#schedule
+  schedule: ["every weekend"],
+  node: {
+    major: {
+      enabled: true,
+    },
+    // https://renovatebot.com/docs/node/#configuring-support-policy
+    supportPolicy: ["current"],
+  },
+  packageRules: [
+    {
+      packageNames: ["prettier"],
+      groupName: "prettier",
+      automerge: true,
+      automergeType: "branch",
+    },
+    {
+      packageNames: ["black"],
+      groupName: "black",
+      automerge: true,
+      automergeType: "branch",
+    },
+    {
+      packageNames: ["flake8"],
+      groupName: "flake8",
+      automerge: true,
+      automergeType: "branch",
+    },
+    {
+      packageNames: ["mypy"],
+      groupName: "mypy",
+      automerge: true,
+      automergeType: "branch",
+    },
+    {
+      packageNames: ["pytest"],
+      groupName: "pytest",
+      automerge: true,
+      automergeType: "branch",
+    },
+    {
+      packageNames: ["react", "react-dom", "@types/react"],
+      groupName: "react",
+      automerge: true,
+      automergeType: "branch",
+    },
+    {
+      packageNames: ["next"],
+      groupName: "next",
+      automerge: true,
+      automergeType: "branch",
+    },
+    {
+      packageNames: ["autoprefixer"],
+      groupName: "autoprefixer",
+      automerge: true,
+      automergeType: "branch",
+    },
+    {
+      packageNames: ["postcss"],
+      groupName: "postcss",
+      automerge: true,
+      automergeType: "branch",
+    },
+    {
+      packageNames: ["typescript"],
+      groupName: "typescript",
+      automerge: true,
+      automergeType: "branch",
+    },
+  ],
+}
